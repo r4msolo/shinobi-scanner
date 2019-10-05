@@ -1,11 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+
 '''
 Name: Shinobi-Scanner 1.0
 Description: Network Scanner
 Version: Python 3.7
 -
 Author: R4MSOLO
-''' 
+'''
+
 import argparse
 import socket
 import sys
@@ -91,7 +93,7 @@ banner = '''
 '''
 
 if __name__ == "__main__":
-	try:	
-		NetworkScan()
+	try:
+            NetworkScan()
 	except KeyboardInterrupt:
-			print("\nScan finished by user...")
+            print("\nScan finished by user...")
