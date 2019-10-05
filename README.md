@@ -1,4 +1,4 @@
 # shinobi-scanner
 [Network Scanner]
 
-![](scan.png)
+![](img/scan.png)
