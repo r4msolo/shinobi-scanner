@@ -1,6 +1,6 @@
 # Shinobi Scanner
 
-Use `./shinobi -a [ADDRESS]` for scan all ports and `-p [PORTS]` parameter for specific ports
+Use `./shinobi.py -a [ADDRESS]` for scan all ports and `-p [PORTS]` parameter for specific ports
 
 ![](img/scan.png)
 

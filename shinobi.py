@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#! /usr/bin/env python3
 
 '''
 Name: Shinobi-Scanner 1.0
@@ -16,12 +16,17 @@ class NetworkScan():
 
 	def __init__(self):
 		print(banner)
-		self.parameters()
-		domain = args.address,socket.gethostbyaddr(args.address)
-		x = domain[1][0]
-		z = domain[1][2]
-		print("\n => Target",x,"<=>",z,"\n")
-		self.portScan()
+		try:
+			self.parameters()
+			domain = args.address,socket.gethostbyaddr(args.address)
+			x = domain[1][0]
+			z = domain[1][2]
+			print("\n => Target",x,"<=>",z,"\n")
+			self.portScan()
+
+		except TypeError:
+			print(" [!] Usage ./shinobi.py -h for help")
+			quit()
 
 	def portScan(self):
 
@@ -97,3 +102,4 @@ if __name__ == "__main__":
             NetworkScan()
 	except KeyboardInterrupt:
             print("\nScan finished by user...")
+
