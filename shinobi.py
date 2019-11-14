@@ -21,11 +21,11 @@ class NetworkScan():
 			domain = args.address,socket.gethostbyaddr(args.address)
 			x = domain[1][0]
 			z = domain[1][2]
-			print("\n => Target",x,"<=>",z,"\n")
+			print(RED+BOLD+"\n => Target",x,"<=>",z,"\n"+ENDC)
 			self.portScan()
 
 		except TypeError:
-			print(" [!] Usage ./shinobi.py -h for help")
+			print(GREY+" [!] Usage ./shinobi.py -h for help"+ENDC)
 			quit()
 
 	def portScan(self):
@@ -39,12 +39,10 @@ class NetworkScan():
 		#[DEFAULT] Varre todas portas se não for passado parâmetro | scans all ports as default
 		if args.ports == None:
 			self.ports = list(range(1,65536))
-			print("[!] This may take a while, get some coffee, I'll take care of it for you ;)","\n")
 		
 		#Faz a varredura nas portas somente passadas por parametro | Scans the ports passed by parameter
 		elif args.ports != None:
 			self.ports = args.ports
-			print("[!] We're sending our best shinobi to take care of it.")
 
 		
 		for num, port in enumerate(self.ports):
@@ -65,7 +63,7 @@ class NetworkScan():
 				flagfound.append(flag)
 				conn.close()
 
-			print("[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(portfound), end = "\r")
+			print(GREEN+"[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(portfound), end = "\r")
 		
 		
 		print("\n\n[+] Open ports found:\n[PORT]\t\t[SERVICE]\n")
@@ -81,7 +79,15 @@ class NetworkScan():
  		parser.add_argument("-p", dest="ports", nargs="+", action="store", help="For specific port scans (ex. -p 22 80)")
  		args = parser.parse_args()
 
-banner = '''
+'''Colors'''
+PURPLE = '\033[95m'
+GREEN = '\033[92m'
+GREY = '\033[93m'
+RED = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+
+banner = PURPLE+BOLD+'''
   ____    _       _                   _       _  
  / ___|  | |__   (_)  _ __     ___   | |__   (_)
  \___ \  | '_ \  | | | '_ \   / _ \  | '_ \  | |
@@ -95,7 +101,7 @@ banner = '''
         __/()\__  
        /   /\   \ 
  _____/___/  \___\            
-'''
+'''+ENDC
 
 if __name__ == "__main__":
 	try:
