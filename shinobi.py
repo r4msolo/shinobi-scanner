@@ -25,7 +25,7 @@ class NetworkScan():
 			self.portScan()
 
 		except TypeError:
-			print(GREY+" [!] Usage ./shinobi.py -h for help"+ENDC)
+			print(GREY+"[!] Use ./shinobi.py -h for help"+ENDC)
 			quit()
 
 	def portScan(self):
