@@ -1,8 +1,17 @@
 # Shinobi Scanner
 
-Use `./shinobi.py -a [ADDRESS]` for scan all ports
+```
+  $ ./shinobi.py -a [ADDRESS] # To scan all ports
+```
+
 ![](img/scan.png)
 
-and `-p [PORTS]` parameter for specific ports
+```
+  $ ./shinobi.py-p -a [ADDRESS] -p [PORTS] # To specific ports
+```
 
 ![](img/scan-port.png)
+
+## License
+
+MIT © [R4MSOLO](https://r4msolo.github.io)<br/>
