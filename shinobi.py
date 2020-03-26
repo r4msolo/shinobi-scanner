@@ -14,6 +14,12 @@ import sys
 
 class NetworkScan():
 
+	#Portas encontradas | Port found
+	portfound = []
+		
+	#Serviços encontrados | Services found
+	flagfound = []
+
 	def __init__(self):
 		print(banner)
 		try:
@@ -29,13 +35,6 @@ class NetworkScan():
 			quit()
 
 	def portScan(self):
-
-		#Portas encontradas | Port found
-		portfound = []
-		
-		#Serviços encontrados | Services found
-		flagfound = []
-
 		#[DEFAULT] Varre todas portas se não for passado parâmetro | scans all ports as default
 		if args.ports == None:
 			self.ports = list(range(1,65536))
@@ -44,32 +43,37 @@ class NetworkScan():
 		elif args.ports != None:
 			self.ports = args.ports
 
-		
-		for num, port in enumerate(self.ports):
-			conn = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-			conn.settimeout(2)
-			if conn.connect_ex((args.address,int(port))) == 0:
-				try:
-					#busca o serviço por banner retornado | finds the service by the returned banner
-					flag = conn.recv(40).decode("utf-8","ignore").strip("\n")
-					assert flag
-					conn.close()
+		try:
+			for num, port in enumerate(self.ports):
+				conn = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+				conn.settimeout(2)
+				if conn.connect_ex((args.address,int(port))) == 0:
+					try:
+						#busca o serviço por banner retornado | finds the service by the returned banner
+						flag = conn.recv(40).decode("utf-8","ignore").strip("\n")
+						assert flag
+						conn.close()
 
-				except:
-					flag = "\tUnknown"
-					conn.close()
+					except:
+						flag = "\tUnknown"
+						conn.close()
 
-				portfound.append(port)
-				flagfound.append(flag)
-				conn.close()
+					self.portfound.append(port)
+					self.flagfound.append(flag)
+					conn.close()		
+				print(GREEN+"[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(self.portfound), end = "\r")
+			
+			self.showResults()
 
-			print(GREEN+"[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(portfound), end = "\r")
+		except KeyboardInterrupt:
+			self.showResults()
+			print("\nScan finished by user...")
 		
-		
+	def showResults(self):
 		print("\n\n[+] Open ports found:\n[PORT]\t\t[SERVICE]\n")
-		for l in portfound:
-			index = portfound.index(l)
-			flag = flagfound[index]
+		for l in self.portfound:
+			index = self.portfound.index(l)
+			flag = self.flagfound[index]
 			print(str(l)+"/tcp"+"\t",flag)
 
 	def parameters(self):
@@ -104,8 +108,4 @@ banner = PURPLE+BOLD+'''
 '''+ENDC
 
 if __name__ == "__main__":
-	try:
-            NetworkScan()
-	except KeyboardInterrupt:
-            print("\nScan finished by user...")
-
+	NetworkScan()
