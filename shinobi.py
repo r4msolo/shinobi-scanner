@@ -5,7 +5,7 @@ Name: Shinobi-Scanner 1.0
 Description: Network Scanner
 Version: Python 3.7
 -
-Author: R4MSOLO
+Author: Igor M. Martins
 '''
 
 import argparse
