@@ -101,7 +101,7 @@ banner = PURPLE+BOLD+'''
            	  
     _______/\ 	
           /  \    \tVersion: 1.0
-     _____|  |    \tAuthor: R4MSOLO
+     _____|  |    \tAuthor: Igor M. Martins
         __/()\__  
        /   /\   \ 
  _____/___/  \___\            
