@@ -60,7 +60,8 @@ class NetworkScan():
 
 					self.portfound.append(port)
 					self.flagfound.append(flag)
-					conn.close()		
+				
+				conn.close()		
 				print(GREEN+"[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(self.portfound), end = "\r")
 			
 			self.showResults()
