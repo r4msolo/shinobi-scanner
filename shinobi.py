@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 '''
-Name: Shinobi-Scanner 1.0
+Name: Shinobi-Scanner 1.1
 Description: Network Scanner
 Version: Python 3.7
 -
@@ -24,10 +24,14 @@ class NetworkScan():
 		print(banner)
 		try:
 			self.parameters()
-			domain = args.address,socket.gethostbyaddr(args.address)
-			x = domain[1][0]
-			z = domain[1][2]
-			print(RED+BOLD+"\n => Target",x,"<=>",z,"\n"+ENDC)
+			try:
+			    domain = args.address,socket.gethostbyaddr(args.address)
+			    x = domain[1][0]
+			    z = domain[1][2][0]
+			    print(RED+BOLD+"\n => Target",x,"<=>",z,"\n"+ENDC)
+			except:
+			    print(RED+BOLD+"\n => Target",args.address,"\n"+ENDC)
+			
 			self.portScan()
 
 		except TypeError:
@@ -63,15 +67,19 @@ class NetworkScan():
 				
 				conn.close()		
 				print(GREEN+"[!] Scanning ports",str(num+1)+"/"+str(len(self.ports)),"...","Open ports:",len(self.portfound), end = "\r")
-			
-			self.showResults()
+
+			if len(self.portfound) >=1:
+				self.showResults()
+			else:
+				print("\n[!] No port found")
+
 
 		except KeyboardInterrupt:
 			self.showResults()
-			print("\nScan finished by user...")
+			print("Scan finished by user...")
 		
 	def showResults(self):
-		print("\n\n[+] Open ports found:\n[PORT]\t\t[SERVICE]\n")
+		print("\n[+] Open ports found:\n[PORT]\t\t[SERVICE]\n")
 		for l in self.portfound:
 			index = self.portfound.index(l)
 			flag = self.flagfound[index]
@@ -101,7 +109,7 @@ banner = PURPLE+BOLD+'''
  \t\t\t\t\t[Scanner]
            	  
     _______/\ 	
-          /  \    \tVersion: 1.0
+          /  \    \tVersion: 1.1
      _____|  |    \tAuthor: Igor M. Martins
         __/()\__  
        /   /\   \ 
