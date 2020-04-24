@@ -93,14 +93,14 @@ class NetworkScan():
  		args = parser.parse_args()
 
 '''Colors'''
-PURPLE = '\033[95m'
+BLUE = '\033[94m'
 GREEN = '\033[92m'
 GREY = '\033[93m'
 RED = '\033[91m'
 ENDC = '\033[0m'
 BOLD = '\033[1m'
 
-banner = PURPLE+BOLD+'''
+banner = BLUE+BOLD+'''
   ____    _       _                   _       _  
  / ___|  | |__   (_)  _ __     ___   | |__   (_)
  \___ \  | '_ \  | | | '_ \   / _ \  | '_ \  | |
