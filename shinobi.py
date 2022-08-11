@@ -5,7 +5,7 @@ Name: Shinobi-Scanner 1.1
 Description: Network Scanner
 Version: Python 3.7
 -
-Author: Igor M. Martins
+Author: Igor M. Martins (r4msolo)
 '''
 
 import argparse
@@ -110,7 +110,7 @@ banner = BLUE+BOLD+'''
            	  
     _______/\ 	
           /  \    \tVersion: 1.1
-     _____|  |    \tAuthor: Igor M. Martins
+     _____|  |    \tAuthor: R4MSOLO
         __/()\__  
        /   /\   \ 
  _____/___/  \___\            
